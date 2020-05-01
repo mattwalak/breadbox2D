@@ -22,3 +22,4 @@ VEC2 truncate(VEC3 in);
 VEC2 translate(VEC2 in, VEC2 trans);
 VEC2 rotate(VEC2 in, float rot, VEC2 anchor);
 VEC2 scale(VEC2 in, VEC2 scale);
+void readPPM(const string& filename, int& xRes, int& yRes, float*& values);

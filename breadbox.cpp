@@ -54,7 +54,27 @@ float * rasterizeScene(int xRes, int yRes, float t){
 }
 
 int main(int argc, char ** argv){
+
+	/*int startFrame, endFrame;
+	if(argc == 1){
+		startFrame = 0;
+		endFrame = 1;
+	}else if(argc == 2){
+		startFrame = atoi(argv[1]);
+		endFrame = 300;
+	}else{
+		startFrame = atoi(argv[1]);
+		endFrame = atoi(argv[2]);
+	}
+
 	buildScene();
-	float * pixels = rasterizeScene(xRes, yRes, 0);
-	writePPM("oven/output.ppm", xRes, yRes, pixels);
+	for(int frame_num = startFrame; frame_num < endFrame; frame_num++){
+		float * pixels = rasterizeScene(xRes, yRes, frame_num);
+		char buffer[256];
+    sprintf(buffer, "./oven/frame.%04i.ppm", frame_num);
+		writePPM(buffer, xRes, yRes, pixels);
+		cout << "Rendered frame " << frame_num << endl;
+	}*/
+
+	
 }

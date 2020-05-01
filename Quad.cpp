@@ -13,7 +13,9 @@ VEC2 anchor;
 float opacity;
 Renderer * render;
 
-Quad::Quad(){
+
+
+Quad::Quad(Anim_v2 posAnim, Anim_f rotAnim, Anim_v2 sizeAnim, Anim_v2 anchorAnim, Anim_f opacityAnim){
 	pos = {960, 540};
 	rot = 10;
 	size = {100,100};

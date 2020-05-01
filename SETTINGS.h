@@ -8,7 +8,10 @@
 #include "Eigen/Dense"
 #include "Eigen/Sparse"
 #include "Eigen/Geometry"
+
+#include <functional> 
 using namespace Eigen;
+using namespace std;
 
 #define Real double
 
@@ -25,6 +28,23 @@ typedef Matrix<Real, Dynamic, Dynamic> MATRIX;
 typedef Matrix<Real, Dynamic, 1> VECTOR;
 typedef Eigen::SparseMatrix<Real> SPARSE_MATRIX;
 typedef Eigen::Triplet<Real> TRIPLET;
+
+
+typedef struct Anim_f{
+	vector<float> keys;
+	vector<float> fvals;
+	vector<function<float(float)>> interps; // Lambda functions
+}Anim_f;
+
+typedef struct Anim_v2{
+	vector<float> keys;
+	vector<VEC2> v2vals;
+	vector<function<float(float)>> interps; // Lambda functions
+}Anim_v2;
+
+auto lerp = [](float t_in){
+	return t_in;
+};
 
 #ifndef NDEBUG
 #define NDEBUG

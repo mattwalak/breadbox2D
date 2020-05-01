@@ -25,6 +25,38 @@ void writePPM(const string& filename, int& xRes, int& yRes, const float* values)
   delete[] pixels;
 }
 
+void readPPM(const string& filename, int& xRes, int& yRes, float*& values)
+{
+  // try to open the file
+  FILE *fp;
+  fp = fopen(filename.c_str(), "rb");
+  if (fp == NULL)
+  {
+    cout << " Could not open file \"" << filename.c_str() << "\" for reading." << endl;
+    cout << " Make sure you're not trying to read from a weird location or with a " << endl;
+    cout << " strange filename. Bailing ... " << endl;
+    exit(0);
+  }
+
+  // get the dimensions
+  fscanf(fp, "P6\n%d %d\n255\n", &xRes, &yRes);
+  int totalCells = xRes * yRes;
+
+  // grab the pixel values
+  unsigned char* pixels = new unsigned char[3 * totalCells];
+  fread(pixels, 1, totalCells * 3, fp);
+
+  // copy to a nicer data type
+  values = new float[3 * totalCells];
+  for (int i = 0; i < 3 * totalCells; i++)
+    values[i] = pixels[i];
+
+  // clean up
+  delete[] pixels;
+  fclose(fp);
+  cout << " Read in file " << filename.c_str() << endl;
+}
+
 VEC2 hadamard(VEC2 a, VEC2 b){
   return {a[0]*b[0], a[1]*b[1]};
 }
@@ -147,4 +179,22 @@ VEC2 rotate(VEC2 in, float rot, VEC2 anchor){
 
 VEC2 scale(VEC2 in, VEC2 scale){
   return {in[0]*scale[0], in[1]*scale[1]};
+}
+
+float f_animate(Anim anim, float t_in){
+  int i = 0;
+  while((i < anim.keys.size()) && (t_in >= anim.keys[i])) i++;
+  int nextFrame = i;
+  if(nextFrame == anim.keys.size()) nextFrame--;
+  int lastFrame = i-1;
+  if(lastFrame < 0) lastFrame = 0;
+  float percent;
+  if(nextFrame != lastFrame){
+    percent = (t_in-anim.keys[lastFrame])/(anim.keys[nextFrame]-anim.keys[lastFrame]);
+  }else{
+    percent = 1;
+  }
+
+  float percent_scale = anim.interps[lastFrame](percent);
+  return anim.fvals[lastFrame] + (anim.fvals[nextFrame]-anim.fvals[lastFrame])*percent_scale;
 }
