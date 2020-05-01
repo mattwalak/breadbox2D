@@ -7,4 +7,5 @@ public:
 	Quad();
 	int result();
 	bool isVisible(float x, float y, float t);
+	VEC4 getColor(float x, float y, float t);
 };
