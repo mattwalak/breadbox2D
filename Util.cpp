@@ -181,20 +181,28 @@ VEC2 scale(VEC2 in, VEC2 scale){
   return {in[0]*scale[0], in[1]*scale[1]};
 }
 
-float f_animate(Anim anim, float t_in){
+float f_animate(Anim_f anim, float t_in){
   int i = 0;
   while((i < anim.keys.size()) && (t_in >= anim.keys[i])) i++;
   int nextFrame = i;
-  if(nextFrame == anim.keys.size()) nextFrame--;
+  if(nextFrame == anim.keys.size()) return anim.vals_f[i-1]; // We passed the last keyframe
   int lastFrame = i-1;
-  if(lastFrame < 0) lastFrame = 0;
-  float percent;
-  if(nextFrame != lastFrame){
-    percent = (t_in-anim.keys[lastFrame])/(anim.keys[nextFrame]-anim.keys[lastFrame]);
-  }else{
-    percent = 1;
-  }
+  if(lastFrame < 0) return anim.vals_f[0]; // We have not reached the first keyframe
+  float percent = (t_in-anim.keys[lastFrame])/(anim.keys[nextFrame]-anim.keys[lastFrame]);
+  
+  percent = anim.interps[lastFrame](percent);
+  return anim.vals_f[lastFrame] + (anim.vals_f[nextFrame]-anim.vals_f[lastFrame])*percent;
+}
 
-  float percent_scale = anim.interps[lastFrame](percent);
-  return anim.fvals[lastFrame] + (anim.fvals[nextFrame]-anim.fvals[lastFrame])*percent_scale;
+VEC2 v2_animate(Anim_v2 anim, float t_in){
+  int i = 0;
+  while((i < anim.keys.size()) && (t_in >= anim.keys[i])) i++;
+  int nextFrame = i;
+  if(nextFrame == anim.keys.size()) return anim.vals_v2[i-1]; // We passed the last keyframe
+  int lastFrame = i-1;
+  if(lastFrame < 0) return anim.vals_v2[0]; // We have not reached the first keyframe
+  float percent = (t_in-anim.keys[lastFrame])/(anim.keys[nextFrame]-anim.keys[lastFrame]);
+ 
+  percent = anim.interps[lastFrame](percent);
+  return anim.vals_v2[lastFrame] + (anim.vals_v2[nextFrame]-anim.vals_v2[lastFrame])*percent;
 }

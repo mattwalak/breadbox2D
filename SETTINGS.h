@@ -32,18 +32,22 @@ typedef Eigen::Triplet<Real> TRIPLET;
 
 typedef struct Anim_f{
 	vector<float> keys;
-	vector<float> fvals;
+	vector<float> vals_f;
 	vector<function<float(float)>> interps; // Lambda functions
 }Anim_f;
 
 typedef struct Anim_v2{
 	vector<float> keys;
-	vector<VEC2> v2vals;
+	vector<VEC2> vals_v2;
 	vector<function<float(float)>> interps; // Lambda functions
 }Anim_v2;
 
-auto lerp = [](float t_in){
-	return t_in;
+auto lerp = [](float t){
+	return t;
+};
+
+auto serp = [](float t){
+	return 3*pow(t,2) - 2*pow(t,2);
 };
 
 #ifndef NDEBUG

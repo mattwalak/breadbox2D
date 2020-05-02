@@ -10,7 +10,7 @@ public:
 	void setLayer(int layer_in){layer = layer_in;}
 	int getLayer(){return layer;}
 	virtual bool isVisible(float x, float y, float t) = 0;
-	virtual VEC4 getColor(float x, float y, float t) = 0;
+	virtual VEC3 getColor(float x, float y, float t) = 0;
 };
 
 #endif

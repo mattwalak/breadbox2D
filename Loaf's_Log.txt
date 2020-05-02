@@ -1,5 +1,7 @@
 4/30/20		10:55pm		1:05		Drafted classes
 5/1/20		8:50am		1:30		Began writing render sequence and quad class
-5/1/20		5:30pm		
+5/1/20		5:30pm		1:10		Continued writing quad class. Began writing animations.
+5/1/20		9:50pm		0:55		Continued writing animations
+5/2/20		10:30am		0:05		Added motion blur yay
 ---------------------------------------------------------------------------------------------------------------------------
-										2:35		TOTAL
+										4:45		TOTAL
