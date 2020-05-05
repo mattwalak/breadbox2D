@@ -206,3 +206,15 @@ VEC2 v2_animate(Anim_v2 anim, float t_in){
   percent = anim.interps[lastFrame](percent);
   return anim.vals_v2[lastFrame] + (anim.vals_v2[nextFrame]-anim.vals_v2[lastFrame])*percent;
 }
+
+Image newImage(char * filename_in){
+  Image img;
+  img.filename = filename_in;
+  int x, y;
+  float * pix;
+  readPPM(filename_in, x, y, pix);
+  img.xRes = x;
+  img.yRes = y;
+  img.pixels = pix;
+  return img;
+}

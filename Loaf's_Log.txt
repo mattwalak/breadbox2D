@@ -3,5 +3,8 @@
 5/1/20		5:30pm		1:10		Continued writing quad class. Began writing animations.
 5/1/20		9:50pm		0:55		Continued writing animations
 5/2/20		10:30am		0:05		Added motion blur yay
+5/4/20		9:25am		0:40		Added image support and maybe subpixel animation idk dosent seem to be working
+5/4/20		10:40pm		1:00		Tried to figure out motion blur integral but its WAAAAAAAY more complicated than I though. Lets stick with monte carlo for now
+5/5/20		9:40am		0:30		Drafted fireworks function
 ---------------------------------------------------------------------------------------------------------------------------
-										4:45		TOTAL
+										6:15		TOTAL

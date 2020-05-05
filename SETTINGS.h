@@ -42,6 +42,23 @@ typedef struct Anim_v2{
 	vector<function<float(float)>> interps; // Lambda functions
 }Anim_v2;
 
+typedef struct Image{
+	char * filename;
+	float * pixels;
+	int xRes;
+	int yRes;
+}Image;
+
+typedef struct Fill{
+	int type; //0 = solid color, 1 = Image, 2 = gradient (You would put stroke and text in here too probably maybe idk)
+	VEC3 color;
+	Image img;
+}Fill;
+
+typedef struct Stroke{
+
+}Stroke;
+
 auto lerp = [](float t){
 	return t;
 };

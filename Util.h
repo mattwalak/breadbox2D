@@ -28,5 +28,6 @@ VEC2 rotate(VEC2 in, float rot, VEC2 anchor);
 VEC2 scale(VEC2 in, VEC2 scale);
 VEC2 v2_animate(Anim_v2 anim, float t_in);
 float f_animate(Anim_f anim, float t_in);
+Image newImage(char * filename_in);
 
 #endif
